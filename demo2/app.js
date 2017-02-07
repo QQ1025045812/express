@@ -32,6 +32,9 @@ app.post('/add',function(req,res){
     res.redirect('/');
 })
 app.post('/update',function(req,res){
+  let index=req.query.index;
+  console.log(index)
+  db.update(index,{title:req.body.title});
   res.redirect('/');
 })
 app.get('/del',function(req,res){

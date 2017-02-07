@@ -19,7 +19,7 @@ module.exports={
          this.store();
     },
     update(index,newArticle){
-        repos.splice(index,1,newArtcle);
+        repos.splice(index,1,newArticle);
         this.store();
     }
 }

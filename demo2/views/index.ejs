@@ -2,7 +2,7 @@
 <html>
   <head>
     <title></title>
-    <link href="//cdn.bootcss.com/bootstrap/4.0.0-alpha.4/css/bootstrap.css" rel="stylesheet">
+    <link href="/stylesheets/bootstrap.css" rel="stylesheet">
   </head>
   <body style="margin:50px;">
   <form action="/add" method="post">
@@ -10,18 +10,25 @@
   </form>
 <ul class="list-group" style="margin-top:10px;" class="row">
   <%list.forEach(function(content,index){%>
-  <li class="list-group-item"><%= content.title%><a style="margin:0 20px;" class="btn btn-primary" href="/del?index=<%= index%>">删除</a><input type="button" value="修改" class="btn btn-danger" onclick="show(<%= content.title%>)"></li>
+  <li class="list-group-item"><%= content.title%><a style="margin:0 20px;" class="btn btn-primary" href="/del?index=<%= index%>">删除</a><input type="button" value="修改" class="btn btn-danger" onclick="show(<%= content.title%>,<%= index%>)"></li>
   <%})%>
 </ul>
 <form action="/update" method="post" style="margin-top:100px;display:none;" id="formtwo">
-    <input type="text" style="width:200px;" id="start"> <input type="text" style="width:200px;" placeholder="请输入数据..." name="title">   <input type="submit" value="确定" class="btn btn-primary" id="bbn3">
+    <input type="text" style="width:200px;" id="start"> <input type="text" style="width:200px;" placeholder="请输入数据..." name="title">   <input type="button" value="取消" class="btn btn-primary" id="bbn4"> <input type="submit" value="确定" class="btn btn-primary" id="bbn3">
   </form>
-    <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.js"></script>
-    <script src="//cdn.bootcss.com/bootstrap/4.0.0-alpha.4/js/bootstrap.js"></script>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.js"></script>
   </body>
   <script>
-       function show(start){
-          $("")
+       function show(start,index){
+         alert(index)
+          $("#formtwo").attr("action","/update?index="+index);
+           $("#start").val(start);
+          $("#formtwo").css("display","block");
        }
+        $("#bbn4").click(function(){
+             $("#start").val();
+             $("#formtwo").css("display","none");
+        })
   </script>
 </html>
