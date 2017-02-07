@@ -1,0 +1,19 @@
+{
+  "name": "expressdemo",
+  "version": "1.0.0",
+  "description": "expressdemo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QQ1025045812/express.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/QQ1025045812/express/issues"
+  },
+  "homepage": "https://github.com/QQ1025045812/express#readme"
+}
