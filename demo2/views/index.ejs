@@ -10,20 +10,24 @@
   </form>
 <ul class="list-group" style="margin-top:10px;" class="row">
   <%list.forEach(function(content,index){%>
-  <li class="list-group-item"><%= content.title%><a style="margin:0 20px;" class="btn btn-primary" href="/del?index=<%= index%>">删除</a><input type="button" value="修改" class="btn btn-danger" onclick="show(<%= content.title%>,<%= index%>)"></li>
+  <li class="list-group-item"><%= content.title%><a style="margin:0 20px;" class="btn btn-primary" href="/del?index=<%= index%>">删除</a><input type="button" value="修改" class="btn btn-danger" onclick="show(<%= index%>)"></li>
   <%})%>
 </ul>
 <form action="/update" method="post" style="margin-top:100px;display:none;" id="formtwo">
+    <input type="hidden" name="index" id="hideindex">
     <input type="text" style="width:200px;" id="start"> <input type="text" style="width:200px;" placeholder="请输入数据..." name="title">   <input type="button" value="取消" class="btn btn-primary" id="bbn4"> <input type="submit" value="确定" class="btn btn-primary" id="bbn3">
   </form>
     <script src="/js/jquery.js"></script>
     <script src="/js/bootstrap.js"></script>
   </body>
   <script>
-       function show(start,index){
-         alert(index)
-          $("#formtwo").attr("action","/update?index="+index);
-           $("#start").val(start);
+       function show(index){
+
+          $.get('/get/'+index,function(result){
+            console.log(result)
+                $("#start").val(result.title);
+                 $("#hideindex").val(index);
+          })
           $("#formtwo").css("display","block");
        }
         $("#bbn4").click(function(){

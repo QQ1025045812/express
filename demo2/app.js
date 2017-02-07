@@ -32,10 +32,15 @@ app.post('/add',function(req,res){
     res.redirect('/');
 })
 app.post('/update',function(req,res){
-  let index=req.query.index;
+  var index=req.body.index;
   console.log(index)
   db.update(index,{title:req.body.title});
   res.redirect('/');
+})
+app.get('/get/:index',function(req,res){
+  var index=req.params.index;
+  var article=db.get(index);
+  res.send(article);
 })
 app.get('/del',function(req,res){
     let index=req.query.index;
