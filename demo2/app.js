@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var db=require('./db');
 var index = require('./routes/index');
 var users = require('./routes/users');
-
+var methodoverride=require('method-override');
 var app = express();
 
 // view engine setup
@@ -24,9 +24,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //app.use('/', index);
 //app.use('/users', users);
-app.get('/',function(req,res){
-    res.render('index',{list:db.list})
-})
+
+
 app.post('/add',function(req,res){
     db.add({title:req.body.title});
     res.redirect('/');
@@ -46,6 +45,22 @@ app.get('/del',function(req,res){
     let index=req.query.index;
     db.del(index);
     res.redirect('/');
+})
+app.use('/login',methodoverride("search"));
+
+// app.use('/login',function(req,res,next){
+//   var old=req.method;
+//   var nes=req.body.search;
+//    console.log(nes)
+//    console.log(old)
+//   req.method=nes;
+//   console.log(req.method)
+//   next();
+// })
+app.search('/login',function(req,res){
+  console.log("wuwuwuuwuuwuuuwuuuuuuuuuuuuu")
+    res.send("hayh")
+    //res.render('error');
 })
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
